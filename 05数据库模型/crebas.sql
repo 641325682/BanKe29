@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     2020/3/25 17:55:39                           */
+/* Created on:     2020/4/17 14:52:09                           */
 /*==============================================================*/
 
 
@@ -286,6 +286,7 @@ create table StudentCourse (
    SignInStatus         int                  null,
    TotalExperienceValue int                  null,
    PerExperienceValue   int                  null,
+   SignInDate           datetime             null,
    CreateDate           datetime             null,
    CreateBy             nvarchar(64)         null,
    ModifyDate           datetime             null,

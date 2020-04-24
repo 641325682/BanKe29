@@ -1,25 +1,70 @@
 import Vue from 'vue'
-import vueRouter from 'vue-router'
-import Container from '@/components/Container.vue'
-Vue.use(vueRouter)
+import Router from 'vue-router'
+import Container from '@/views/Container.vue'
 
-const routes = [{
-		path: '/',
-		component: () => import('@/components/login/Login.vue'),
-		children: [{
-			name: 'login',
-			path: '/login',
+Vue.use(Router);
+const defaultRoute = [{
+	// path: '/login',
+	// name: 'login',
+	// component: () => import('@/views/login/Login.vue'),
+	// hidden: true,
+	// meta: {
+	// 	title: '到云',
+	// 	authFilter: false
+	// }
+}]
 
-
-		}]
+export const routes = [
+	{
+		path: '/login',
+		name: 'login',
+		component: () => import('@/views/login/Login.vue'),
+		hidden: true,
+		meta: {
+			title: '到云',
+			authFilter: false
+		}
 	},
 	{
-		path: '/home',
+		path: '/',
 		component: Container,
+		redirect: 'home',
+		hidden: false,
 		children: [{
 			path: '/home',
-			component: () => import('@/components/home/Home.vue')
+			component: () => import('@/views/home/HomeIndex.vue'),
+			name: 'home',
+			hidden: false,
+			meta: {
+				title: '首页',
+				icon: 'all',
+				noCache: true,
+				authFilter: false
+			}
 		}]
+	},
+	 {
+		path: '/systemManage',
+		component: Container,
+		hidden: false,
+		meta: {
+			title: '系统管理',
+			icon: 'viewlist',
+			noCache: true
+		},
+		name: 'systemManage',
+		children: [{
+			path: '/dataDictionary/index',
+			name: 'dataDictionary',
+			hidden: false,
+			meta: {
+				title: '数据字典',
+				noCache: true,
+				icon: 'similar-product'
+			},
+			component: () => import('@/views/dataDictionary/DictionaryContainer.vue')
+		}
+		]
 	},
 	{
 		path: '/errPage',
@@ -32,7 +77,7 @@ const routes = [{
 		},
 		children: [{
 			path: '/errPage/404',
-			component: () => import('@/components/errPage/Page404.vue'),
+			component: () => import('@/views/errPage/Page404.vue'),
 			name: 'errPage404',
 			hidden: false,
 			meta: {
@@ -47,7 +92,7 @@ const routes = [{
 				title: '无权访问',
 				noCache: true
 			},
-			component: () => import('@/components/errPage/Page403.vue')
+			component: () => import('@/views/errPage/Page403.vue')
 		}, {
 			path: '/errPage/500',
 			name: 'errPage500',
@@ -56,14 +101,31 @@ const routes = [{
 				title: '服务器出错',
 				noCache: true
 			},
-			component: () => import('@/components/errPage/Page500.vue')
+			component: () => import('@/views/errPage/Page500.vue')
 		}]
+	}, 
+	{
+		path: '*',
+		name: 'Page404',
+		hidden: true,
+		meta: {
+			title: '找不到页面',
+			authFilter: false
+		},
+		component: () => import('@/views/errPage/Page404')
 	}
-]
+];
 
-const router = new vueRouter({
-	routes,
-	mode: 'history'
+// let userRouter = getUserRoter();
+//
+// function getUserRoter () {
+//     menuAPI.getRoleMenus().then(res => {
+//         console.log('getUserMenu')
+//         console.log(res);
+//     })
+// }
+
+export default new Router({
+	mode:'history',
+	routes: routes
 })
-
-export default router

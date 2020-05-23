@@ -4,28 +4,17 @@ import Container from '@/views/Container.vue'
 
 Vue.use(Router);
 const defaultRoute = [{
-	// path: '/login',
-	// name: 'login',
-	// component: () => import('@/views/login/Login.vue'),
-	// hidden: true,
-	// meta: {
-	// 	title: '到云',
-	// 	authFilter: false
-	// }
+	path: '/login',
+	name: 'login',
+	component: () => import('@/views/login/Login.vue'),
+	hidden: true,
+	meta: {
+		title: '到云',
+		authFilter: false
+	}
 }]
 
-export const routes = [
-	{
-		path: '/login',
-		name: 'login',
-		component: () => import('@/views/login/Login.vue'),
-		hidden: true,
-		meta: {
-			title: '到云',
-			authFilter: false
-		}
-	},
-	{
+export const routes = [{
 		path: '/',
 		component: Container,
 		redirect: 'home',
@@ -43,7 +32,7 @@ export const routes = [
 			}
 		}]
 	},
-	 {
+	{
 		path: '/systemManage',
 		component: Container,
 		hidden: false,
@@ -63,8 +52,7 @@ export const routes = [
 				icon: 'similar-product'
 			},
 			component: () => import('@/views/dataDictionary/DictionaryContainer.vue')
-		}
-		]
+		}]
 	},
 	{
 		path: '/errPage',
@@ -103,7 +91,22 @@ export const routes = [
 			},
 			component: () => import('@/views/errPage/Page500.vue')
 		}]
-	}, 
+	},
+	{
+		path: '/about',
+		component: Container,
+		hidden: false,
+		children: [{
+			path: '/about/index',
+			name: 'about',
+			meta: {
+				title: '关于',
+				icon: 'smile'
+			},
+			hidden: false,
+			component: () => import('@/views/About.vue')
+		}]
+	},
 	{
 		path: '*',
 		name: 'Page404',
@@ -126,6 +129,6 @@ export const routes = [
 // }
 
 export default new Router({
-	mode:'history',
-	routes: routes
+	mode: 'history',
+	routes: defaultRoute
 })

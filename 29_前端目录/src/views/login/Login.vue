@@ -6,20 +6,20 @@
                 <div class="login_logo"><a href="#"><img src="@/assets/logo.png"></a></div>
 
                 <!--登录-->
-                <transition name="fade" mode="out-in">
+                <!-- <transition name="fade" mode="out-in"> -->
                 <login-form v-show="form=='login'" :show-forget="showForget" :show-register="showRegister">
                 </login-form>
-                </transition>
+                <!-- </transition> -->
 
                 <!--注册-->
-                <transition name="fade" mode="out-in">
+                <!-- <transition name="fade" mode="out-in"> -->
                 <register-form v-show="form=='register'" :show-login="showLogin"></register-form>
-                </transition>
+                <!-- </transition> -->
 
                 <!--忘记密码-->
-                <transition name="fade" mode="out-in">
+                <!-- <transition name="fade" mode="out-in"> -->
                 <forget-form v-show="form=='forget'" :show-login="showLogin"></forget-form>
-                </transition>
+                <!-- </transition> -->
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
 		</div>
 		<el-menu mode="vertical" background-color="#304156" text-color="#bfcbd9" :default-active="$route.path" :collapse="isCollapse"
 		 :unique-opened=true router active-text-color="#66b1ff">
-			<template v-for="item in routes" >
+			<template v-for="item in routes">
 				<!--有二级菜单-->
 				<el-submenu v-if="!item.hidden && countChildNum(item) > 1 " :index="item.path" :key="item.path">
 					<!--一级菜单的内容-->
@@ -35,7 +35,7 @@
 <script>
 	import {
 		routes
-	} from '@/router/index'
+	} from '@/router/index.js'
 
 	export default {
 		name: 'sidebar',
@@ -52,14 +52,14 @@
 		},
 		created() {
 			console.log(routes)
-			
+
 		},
 		methods: {
 			handleOpen(key, keyPath) {
-				// console.log(key, keyPath);
+				console.log(key, keyPath);
 			},
 			handleClose(key, keyPath) {
-				// console.log(key, keyPath);
+				console.log(key, keyPath);
 			},
 			countChildNum(item) {
 				if (item.children === undefined) return 0;
@@ -69,6 +69,7 @@
 						count++;
 					}
 				}
+				console.log(count);
 				return count;
 			}
 		}

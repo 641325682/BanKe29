@@ -6,6 +6,10 @@ import router from './router/index.js'
 import store from './store/index.js'
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/styles/index.less'
+import './permission';
+import 'normalize.css';
+import Icon from 'vue2-svg-icon/Icon';
+Vue.component('icon', Icon);  
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);

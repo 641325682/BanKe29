@@ -10,7 +10,7 @@ const app = {
             pageSize: 15,
             pageSizeList: [10, 15, 30, 50]
         },
-        routes: [{path: '/home'}]
+        routes: []
     },
     mutations: {
         TOGGLE_SIDEBAR: state => {
